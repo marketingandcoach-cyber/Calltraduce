@@ -1,0 +1,97 @@
+/* Fuente moderna */
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600&family=Roboto:wght@300;400;500&display=swap');
+
+body {
+    font-family: 'Roboto', sans-serif;
+    background: radial-gradient(circle at top, #0a0f1f, #000000);
+    color: #fff;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 100vh;
+}
+
+/* Contenedor principal */
+.container {
+    margin-top: 40px;
+    background: rgba(20, 20, 40, 0.9);
+    border-radius: 15px;
+    padding: 30px;
+    width: 90%;
+    max-width: 900px;
+    box-shadow: 0 0 25px rgba(0, 255, 200, 0.4);
+    backdrop-filter: blur(10px);
+}
+
+/* Título */
+h1 {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 2rem;
+    text-align: center;
+    color: #00ffc8;
+    margin-bottom: 20px;
+    letter-spacing: 2px;
+}
+
+/* Etiquetas */
+label {
+    font-weight: bold;
+    display: block;
+    margin: 10px 0 5px;
+    color: #00ffc8;
+}
+
+/* Selects y áreas de texto */
+select, textarea {
+    width: 100%;
+    padding: 10px;
+    border-radius: 8px;
+    border: none;
+    margin-bottom: 15px;
+    font-size: 1rem;
+    background: rgba(255, 255, 255, 0.1);
+    color: #fff;
+}
+
+textarea {
+    resize: vertical;
+    min-height: 100px;
+}
+
+/* Botones */
+button {
+    background: linear-gradient(90deg, #00ffc8, #00aaff);
+    color: #000;
+    padding: 12px 20px;
+    border-radius: 8px;
+    font-weight: bold;
+    font-size: 1rem;
+    border: none;
+    cursor: pointer;
+    margin: 5px;
+    transition: all 0.3s ease-in-out;
+}
+
+button:hover {
+    background: linear-gradient(90deg, #00aaff, #00ffc8);
+    transform: scale(1.05);
+}
+
+/* Efecto de foco en inputs */
+select:focus, textarea:focus {
+    outline: none;
+    box-shadow: 0 0 10px #00ffc8;
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+    .container {
+        padding: 20px;
+    }
+    h1 {
+        font-size: 1.5rem;
+    }
+}
+

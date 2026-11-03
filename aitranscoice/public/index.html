@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>🌐 AITRANSVOICE</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="container">
+    <h1>🌐 AITRANSVOICE</h1>
+    <p class="subtitle">Traducción instantánea de voz y texto</p>
+
+    <!-- Selectores de idioma -->
+    <div class="selectors">
+      <div>
+        <label for="fromLanguage">De:</label>
+        <select id="fromLanguage"></select>
+      </div>
+      <div>
+        <label for="toLanguage">A:</label>
+        <select id="toLanguage"></select>
+      </div>
+    </div>
+
+    <!-- Áreas de texto -->
+    <div class="text-areas">
+      <textarea id="inputText" placeholder="Escribe o dicta aquí..."></textarea>
+      <textarea id="outputText" placeholder="Traducción..." readonly></textarea>
+    </div>
+
+    <!-- Botones -->
+    <div class="buttons">
+      <button id="dictateBtn">🎤 Dictar</button>
+      <button id="translateBtn">🌍 Traducir</button>
+      <button id="speakBtn">🔊 Escuchar</button>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
+
