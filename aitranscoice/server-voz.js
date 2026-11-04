@@ -8,6 +8,7 @@ const app = express();
 const server = http.createServer(app);
 const io = socketIo(server);
 
+app.use("/api/meta", require("./meta"));
 app.use(express.static(path.join(__dirname, 'public')));
 
 io.on('connection', (socket) => {
@@ -25,7 +26,10 @@ io.on('connection', (socket) => {
 });
 
 const PORT = process.env.PORT || 3001;
-server.listen(PORT, () => {
+const host = process.env.MODEL_API_KEY || process.env.SEAMLESS_EXPRESSIVE_CLI
+    ? "127.0.0.1"
+    : undefined;
+server.listen(PORT, host, () => {
     console.log(`Servidor de voz escuchando en http://localhost:${PORT}`);
 });
 

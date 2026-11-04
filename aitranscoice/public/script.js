@@ -41,6 +41,53 @@ dictateBtn.addEventListener("click", startDictation);
 translateBtn.addEventListener("click", () => translateText(document.getElementById("inputText").value));
 speakBtn.addEventListener("click", speakTranslation);
 
+const useMeta = document.getElementById("useMeta");
+const expressiveBtn = document.getElementById("expressiveBtn");
+const voiceFile = document.getElementById("voiceFile");
+const expressiveAudio = document.getElementById("expressiveAudio");
+const translationStatus = document.getElementById("translationStatus");
+let audioUrl;
+
+fetch("/api/meta/capabilities")
+  .then(response => response.ok ? response.json() : {})
+  .then(({ text, voice }) => {
+    useMeta.disabled = !text;
+    expressiveBtn.disabled = !voice;
+  })
+  .catch(() => {});
+
+expressiveBtn.addEventListener("click", async () => {
+  const file = voiceFile.files[0];
+  if (!file || file.size > 5 * 1024 * 1024) {
+    translationStatus.textContent = "Selecciona un archivo WAV de hasta 5 MB.";
+    return;
+  }
+
+  expressiveBtn.disabled = true;
+  expressiveAudio.hidden = true;
+  expressiveAudio.removeAttribute("src");
+  expressiveAudio.load();
+  if (audioUrl) URL.revokeObjectURL(audioUrl);
+  translationStatus.textContent = "Traduciendo el audio…";
+  try {
+    const query = new URLSearchParams({ from: fromSelect.value, to: toSelect.value });
+    const response = await fetch(`/api/meta/expressive?${query}`, {
+      method: "POST",
+      headers: { "Content-Type": "audio/wav" },
+      body: file,
+    });
+    if (!response.ok) throw new Error((await response.json()).error);
+    audioUrl = URL.createObjectURL(await response.blob());
+    expressiveAudio.src = audioUrl;
+    expressiveAudio.hidden = false;
+    translationStatus.textContent = "Audio traducido. Pulsa reproducir para escucharlo.";
+  } catch (error) {
+    translationStatus.textContent = error.message;
+  } finally {
+    expressiveBtn.disabled = false;
+  }
+});
+
 // 🎤 Dictado
 function startDictation() {
   if (!("webkitSpeechRecognition" in window)) {
@@ -63,6 +110,25 @@ function startDictation() {
 
 // 🌍 Traducción con API gratuita (MyMemory)
 async function translateText(text) {
+  if (!text.trim()) return;
+  translationStatus.textContent = "";
+  const output = document.getElementById("outputText");
+  output.value = "";
+  if (useMeta.checked) {
+    try {
+      const response = await fetch("/api/meta/translate", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ text, from: fromSelect.value, to: toSelect.value }),
+      });
+      const result = await response.json();
+      if (!response.ok) throw new Error(result.error);
+      output.value = result.translation;
+    } catch (error) {
+      translationStatus.textContent = error.message;
+    }
+    return;
+  }
   const from = fromSelect.value.split("-")[0]; // solo código base (es, en, fr)
   const to = toSelect.value.split("-")[0];
   try {

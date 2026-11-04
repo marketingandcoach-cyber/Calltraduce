@@ -35,6 +35,16 @@
       <button id="translateBtn">🌍 Traducir</button>
       <button id="speakBtn">🔊 Escuchar</button>
     </div>
+    <label><input id="useMeta" type="checkbox" disabled> Traducción de texto con Meta Model API</label>
+    <section>
+      <h2>Voz expresiva de Meta (experimental)</h2>
+      <p>Español ↔ inglés (EE. UU.). Usa una grabación breve en WAV de tu propia voz o de alguien que haya dado su permiso.</p>
+      <input id="voiceFile" type="file" accept=".wav,audio/wav" aria-label="Grabación WAV">
+      <button id="expressiveBtn" type="button" disabled>Traducir audio con SeamlessExpressive</button>
+      <audio id="expressiveAudio" controls hidden></audio>
+    </section>
+    <p id="translationStatus" role="status"></p>
+
   </div>
 
   <script src="script.js"></script>
