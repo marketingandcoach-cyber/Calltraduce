@@ -19,3 +19,5 @@ Define `MODEL_API_KEY` y `META_MODEL` en el entorno del servidor. Usa una clave 
 Solicita los artefactos de [SeamlessExpressive](https://github.com/facebookresearch/seamless_communication#seamlessexpressive-models) y sigue la instalación y licencia de Meta. Una vez que funcione `expressivity_predict` en tu entorno Python, define `SEAMLESS_EXPRESSIVE_CLI` con la ruta absoluta de ese ejecutable y reinicia Node. Selecciona español e inglés (EE. UU.) en el orden deseado, carga una grabación WAV propia o autorizada de hasta 5 MB y pulsa **Traducir audio con SeamlessExpressive**.
 
 La prueba genera audio traducido por separado. El modelo busca conservar rasgos como el ritmo, las pausas y el estilo vocal. La semejanza de la voz debe evaluarse con grabaciones reales. Usa esta prueba en localhost.
+
+Para probar una llamada desde telefonía fija, consulta el [piloto con Asterisk](aitranscoice/telefonia/README.md).
