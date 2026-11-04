@@ -1,0 +1,14 @@
+services:
+  - type: web
+    name: aitransvoice-twilio
+    runtime: node
+    plan: free
+    buildCommand: npm --prefix aitranscoice/telefonia-twilio install
+    startCommand: npm --prefix aitranscoice/telefonia-twilio start
+    envVars:
+      - key: TWILIO_AUTH_TOKEN
+        sync: false
+      - key: MODEL_API_KEY
+        sync: false
+      - key: META_MODEL
+        sync: false

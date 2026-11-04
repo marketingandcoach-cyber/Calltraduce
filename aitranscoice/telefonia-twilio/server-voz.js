@@ -49,7 +49,7 @@ function createApp({ translate, authToken, webhookUrl }) {
 }
 
 if (require.main === module) {
-  const { TWILIO_AUTH_TOKEN, TWILIO_WEBHOOK_ORIGIN, MODEL_API_KEY, META_MODEL, PORT = 3000 } = process.env;
+  const { TWILIO_AUTH_TOKEN, TWILIO_WEBHOOK_ORIGIN = process.env.RENDER_EXTERNAL_URL, MODEL_API_KEY, META_MODEL, PORT = 3000 } = process.env;
   if (!TWILIO_AUTH_TOKEN || !TWILIO_WEBHOOK_ORIGIN) {
     throw new Error('Define TWILIO_AUTH_TOKEN y TWILIO_WEBHOOK_ORIGIN.');
   }
