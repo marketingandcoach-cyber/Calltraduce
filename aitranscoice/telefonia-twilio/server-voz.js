@@ -1,10 +1,12 @@
 const express = require('express');
+const { join } = require('node:path');
 const { Translate } = require('@google-cloud/translate').v2;
 const twilio = require('twilio');
 const { translateWithMeta } = require('../meta-translate');
 
 function createApp({ translate, authToken, webhookUrl }) {
   const app = express();
+  app.use(express.static(join(__dirname, '../public')));
   app.use(express.urlencoded({ extended: false }));
 
   function validate(req, res, next) {
