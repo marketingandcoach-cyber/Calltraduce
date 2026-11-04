@@ -2,6 +2,10 @@
 
 El [servidor telefónico oficial de AITRANSVOICE](aitranscoice/telefonia-twilio/README.md) recibe llamadas por Twilio y permite traducir la transcripción con Meta Model API.
 
+## Línea fija y SIP
+
+El [piloto de telefonía fija con Asterisk](aitranscoice/telefonia/README.md) usa SeamlessExpressive para traducir una frase grabada durante una llamada de prueba. Requiere configurar Asterisk y el modelo en el servidor local. El despliegue de Render corresponde al servidor Twilio; consulta su README para configurar el webhook.
+
 ## Prueba en Visual Studio Code
 
 Abre una terminal en `aitranscoice` con Node.js 22 o posterior.
