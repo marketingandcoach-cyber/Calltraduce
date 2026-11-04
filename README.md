@@ -1,4 +1,7 @@
-# Calltraduce
+# AITRANSVOICE
+
+El [servidor telefónico oficial de AITRANSVOICE](aitranscoice/telefonia-twilio/README.md) recibe llamadas por Twilio y permite traducir la transcripción con Meta Model API.
+
 ## Prueba en Visual Studio Code
 
 Abre una terminal en `aitranscoice` con Node.js 22 o posterior.
